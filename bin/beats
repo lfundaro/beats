@@ -16,7 +16,7 @@ USAGE_INSTRUCTIONS = ""
 YAML::ENGINE.yamler = 'syck' if defined?(YAML::ENGINE)
 
 def parse_options()
-  options = {:split => false}
+  options = {:split => false, :share => false}
 
   optparse = OptionParser.new do |opts|
     opts.banner = "usage: beats [options] input_file [output_file]"
@@ -31,6 +31,10 @@ def parse_options()
 
     opts.on('--path BASE_PATH', "The base path used to load sound files with relative paths.") do |base_path|
       options[:base_path] = base_path
+    end
+
+    opts.on('--share',"Share this song to your SoundCloud account") do
+      options[:share] = true
     end
 
     opts.on('-v', '--version', "Display version number and exit") do
