@@ -9,4 +9,8 @@ if RUBY_VERSION >= "2"
 end
 
 #Soundcloud Integration
+group :sharing do
 gem 'soundcloud'
+gem 'read-password', '~> 0.0.1.2'
+gem 'spinning_cursor'
+end
