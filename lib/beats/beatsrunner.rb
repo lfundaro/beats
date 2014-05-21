@@ -63,6 +63,13 @@ module Beats
         puts 'Could not authenticate: ' + e.message
       end
 
+      #Check out for client connections
+      connections = client.get('/me/connections')
+      #Generate list of connections 
+      shared_to = []
+      connections.each do |connection|
+          shared_to.push({:id => connection.id})
+      end
       #start uploading
       begin
         SpinningCursor.run do
@@ -72,7 +79,10 @@ module Beats
             unless client.nil? 
               client.post('/tracks', :track => {
                 :title      => output_file_name,
-                :asset_data => File.new(output_file_name)
+                :asset_data => File.new(output_file_name),
+                :shared_to  => {
+                  :connections => shared_to
+                }
               })
             end
           end
