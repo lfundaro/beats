@@ -7,3 +7,6 @@ gem 'rake'
 if RUBY_VERSION >= "2"
   gem 'syck'
 end
+
+#Soundcloud Integration
+gem 'soundcloud'
